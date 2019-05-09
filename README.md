@@ -12,19 +12,32 @@ The database dump can be downloaded at: [https://uni-duisburg-essen.sciebo.de/s/
 **articles** contains all Wikipedia articles and ids.
 **term_article_score** gives for each term-article pair the corresponding tf_idf score of the term for that article.
 
+### Useful SQL statements
+
 **Querying the ESA vectors for single (stemmed) term**
 
 ```SQL
-SELECT t.term, a.article, s.tf_idf
+SELECT a.article, s.tf_idf
   FROM terms t, term_article_score s, articles a
-  WHERE t.term like 'physic' 
+  WHERE t.term = 'physic' 
   AND t.id = s.term_id AND a.id = s.article_id
   ORDER BY s.tf_idf DESC;
 ```
 
+**Term disambiguation**
 
-## How to use it
-Queries 
+```SQL
+SELECT a.article, sum(s.tf_idf) as 'score' 
+  FROM terms t, term_article_score s, articles a  
+   WHERE t.term in ('jupit', 'venus', 'mars', 'saturn', 'mytholog') 
+   AND t.id = s.term_id AND a.id = s.article_id 
+   GROUP BY a.article 
+   ORDER BY score 
+   DESC LIMIT 10;
+```
+
+
+## Usage from tools
 
 ### From command line
 1. Download the appropriate prebuild binary sqlite-tools-... for your platform.
