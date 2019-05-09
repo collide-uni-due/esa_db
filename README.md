@@ -2,7 +2,7 @@
 
 This is a SQLite database containing an index that can be used for explicit semantic analysis [https://en.wikipedia.org/wiki/Explicit_semantic_analysis]. The index was generated from a Wikipedia dump in April 2019.
 
-**The database dump can be downloaded at: [https://uni-duisburg-essen.sciebo.de/s/kYNVLdrE7KycpSJ]**
+**The database dump (esa.db) can be downloaded at: [https://uni-duisburg-essen.sciebo.de/s/kYNVLdrE7KycpSJ]**
 
 ## DB structure
 
